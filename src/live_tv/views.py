@@ -38,8 +38,15 @@ def live_tv_detail(request, pk):
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        serializer = LiveTvSerializer(content)
-        return JsonResponse(serializer.data)
+        content = LiveTv.objects.all()
+        data = {
+            "errorCode": 200,
+            "message": "Successful.",
+            "data": list(
+                content.values('created', '_id', 'name', 'description', 'slug', 'type', 'coverImage', 'horizontalImage',
+                               'needLogin', 'price', 'link'))
+        }
+        return JsonResponse(data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)

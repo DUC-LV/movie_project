@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'live_tv',
+    'banner',
+    'live_streaming'
 ]
 
 MIDDLEWARE = [

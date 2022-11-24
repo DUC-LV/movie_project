@@ -16,6 +16,6 @@ class LiveTv(models.Model):
     link = models.CharField(max_length=100)
 
     class Meta:
-        ordering = ['created']
+        ordering = ['created', '_id']
 
 
