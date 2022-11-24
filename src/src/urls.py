@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('live_tv.urls')),
     path('', include('banner.urls')),
-    path('', include('live_streaming.urls'))
+    path('', include('live_streaming.urls')),
+    path('', include('live_video.urls')),
+    path('', include('live_film.urls'))
 ]

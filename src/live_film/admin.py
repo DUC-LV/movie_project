@@ -1,25 +1,21 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin
-
-# Register your models here.
-from .models import LiveVideo
+from .models import LiveFilm
 from guardian.admin import GuardedModelAdmin
 
 
-@admin.register(LiveVideo)
+@admin.register(LiveFilm)
 class Banner(GuardedModelAdmin):
     list_display = [
         'created',
         '_id',
         'name',
+        'coverImage',
+        'coverImageH',
         'description',
         'slug',
-        'durationStr',
-        'coverImage',
+        'type',
         'link',
     ]
 
 
-admin.register(LiveVideo)
+admin.register(LiveFilm)

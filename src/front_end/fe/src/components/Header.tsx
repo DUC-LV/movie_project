@@ -14,25 +14,25 @@ const Header = () => {
 			id: 1,
 			name: "Trang chủ",
 			routLink: "/",
-			color: "#989898",
+			color: "white",
 		},
 		{
 			id: 2,
 			name: "Truyền hình",
 			routLink: "/phim-chieu-rap",
-			color: "#989898",
+			color: "white",
 		},
 		{
 			id: 3,
 			name: "Phim",
 			routLink: "/phim-thinh-hanh",
-			color: "#989898",
+			color: "white",
 		},
 		{
 			id: 4,
 			name: "Video",
 			routLink: "/bang-xep-hang",
-			color: "#989898",
+			color: "white",
 		}
 	]
 	const router = useRouter();
@@ -115,6 +115,7 @@ const Header = () => {
 									"@media only screen and (max-width: 1023px)": {
 										display: 'none'
 									},
+									fontSize: '20px',
 								}}
 							>
 								<NavLink

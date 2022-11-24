@@ -3,8 +3,6 @@ import { Box, Text, Image, Flex } from "theme-ui";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { AiFillStar } from "react-icons/ai";
-import { useRouter } from "next/router";
 export interface ResponsiveObject {
     breakpoint:number,
     slidesToShow:number,
@@ -25,8 +23,8 @@ export interface DataSlide {
 const SlideShow = ({ dataSlide, name }: DataSlide) => {
 	const setting = {
 		infinite: true,
-		slidesToShow: 6,
-		slidesToScroll: 6,
+		slidesToShow: 5,
+		slidesToScroll: 5,
 	}
 	const responsiveSettings = [
 		{
@@ -51,7 +49,7 @@ const SlideShow = ({ dataSlide, name }: DataSlide) => {
 			}
 		},
 	];
-	const router = useRouter();
+	// const router = useRouter();
 	return(
 		<Box
 			sx={{
@@ -86,21 +84,25 @@ const SlideShow = ({ dataSlide, name }: DataSlide) => {
 							}}
 						>
 							<Image
-								onClick={() => {
-									router.push('https://www.facebook.com/')
-								}}
+								// onClick={() => {
+								// 	router.push({
+								// 		pathname: "/movie/[slugMovie]",
+								// 		query: { 
+								// 			slugMovie: convertSlug(item?.name),
+								// 			id: item?.id
+								// 		}
+								// 	})
+								// }}
 								sx={{
 									borderRadius: "10px",
-									border: '1px solid white',
-									width: '90%',
+									width: '95%',
 									"@media only screen and (min-width: 768px) and (max-width: 1023px)": {
 										height: '200px'
 									},
 									"@media only screen and (min-width: 1124px)": {
 										cursor: "pointer",
 										":hover": {
-											transform: "scale(1)",
-											border: "1px solid red",
+											border: "3px solid red",
 										},
 									},
 									"@media only screen and (max-width: 768px)": {

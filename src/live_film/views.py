@@ -5,26 +5,26 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from .models import LiveVideo
-from .serializers import LiveVideoSerializer
+from .models import LiveFilm
+from .serializers import LiveFilmSerializer
 
 
 # Create your views here.
 @csrf_exempt
-def live_video_list(request):
+def live_film_list(request):
     if request.method == 'GET':
-        content = LiveVideo.objects.all()
+        content = LiveFilm.objects.all()
         data = {
             "errorCode": 200,
             "message": "Successful.",
-            "name": "Video của bạn",
+            "name": "Phim thịnh hành",
             "data": list(
-                content.values('created', '_id', 'name', 'description', 'slug', 'durationStr', 'coverImage', 'link'))
+                content.values('created', '_id', 'coverImage', 'coverImageH', 'description', 'slug', 'type', 'link'))
         }
         return JsonResponse(data)
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        serializer = LiveVideoSerializer(data=data)
+        serializer = LiveFilmSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
@@ -32,26 +32,25 @@ def live_video_list(request):
 
 
 @csrf_exempt
-def live_video_detail(request, pk):
+def live_film_detail(request, pk):
     try:
-        content = LiveVideo.objects.get(pk=pk)
-    except LiveVideo.DoesNotExist:
+        content = LiveFilm.objects.get(pk=pk)
+    except LiveFilm.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        content = LiveVideo.objects.all()
+        content = LiveFilm.objects.all()
         data = {
             "errorCode": 200,
             "message": "Successful.",
-            "name": "Video của bạn",
             "data": list(
-                content.values('created', '_id', 'name', 'description', 'slug', 'durationStr', 'coverImage', 'link'))
+                content.values('created', '_id', 'coverImage', 'coverImageH', 'description', 'slug', 'type', 'link'))
         }
         return JsonResponse(data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
-        serializer = LiveVideoSerializer(content, data=data)
+        serializer = LiveFilmSerializer(content, data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)

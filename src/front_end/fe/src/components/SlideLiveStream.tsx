@@ -25,8 +25,8 @@ export interface DataSlide {
 const SlideShow = ({ dataSlide, name }: DataSlide) => {
 	const setting = {
 		infinite: true,
-		slidesToShow: 5,
-		slidesToScroll: 5,
+		slidesToShow: 4,
+		slidesToScroll: 4,
 	}
 	const responsiveSettings = [
 		{
