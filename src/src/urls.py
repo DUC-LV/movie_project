@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('banner.urls')),
     path('', include('live_streaming.urls')),
     path('', include('live_video.urls')),
-    path('', include('live_film.urls'))
+    path('', include('live_film.urls')),
+    path('', include('list_film.urls')),
 ]

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'live_streaming',
     'live_video',
     'live_film',
+    'list_film',
 ]
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # this is default

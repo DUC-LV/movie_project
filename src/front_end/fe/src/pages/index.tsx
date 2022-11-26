@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Box } from "theme-ui";
 import Slide from "../components/Slide";
+import SlideLiveFilm from "../components/SlideLiveFilm";
 import SlideLiveStream from "../components/SlideLiveStream";
 import SlideLiveVideo from "../components/SlideLiveVideo";
 import SlideShow from "../components/SlideShow";
 import getBanner from "../service/getBanner";
+import getListFilm from "../service/getListFilm";
 import getLiveFilm from "../service/getLiveFilm";
 import getLiveStream from "../service/getLiveStream";
 import getLiveTV from "../service/getLiveTV";
@@ -20,6 +22,7 @@ const Home = () => {
 	const [dataLiveStream, setDataLiveStream] = useState<Array<DataBanner>>([]);
 	const [dataLiveVideo, setDataLiveVideo] = useState<Array<DataBanner>>([]);
 	const [dataLiveFim, setDataLiveFilm] = useState<Array<DataBanner>>([]);
+	const [dataListFilm, setDataListFilm] = useState<Array<DataBanner>>([]);
 	const [title, setTitle] = useState('');
 	const [titleLiveStream, setTitleLiveStream] = useState('');
 	const [titleLiveVideo, setTitleLiveVideo] = useState('');
@@ -33,7 +36,6 @@ const Home = () => {
 			setDataLiveTV(res.data.data);
 		})
 		getLiveStream.getAll().then(res => {
-			console.log(res.data)
 			setTitleLiveStream(res.data.name);
 			setDataLiveStream(res.data.data);
 		})
@@ -44,6 +46,9 @@ const Home = () => {
 		getLiveFilm.getAll().then(res => {
 			setDataLiveFilm(res.data.data);
 			setTitleLiveFilm(res.data.name);
+		})
+		getListFilm.getAll().then(res => {
+			setDataListFilm(res.data)
 		})
 		.catch(err => {
 			console.log(err.message);
@@ -81,6 +86,17 @@ const Home = () => {
 				})}
 				name={titleLiveStream}
 			/>
+			<SlideLiveFilm
+				dataSlide={dataLiveFim?.map((item:any) => {
+					return {
+						image: item?.coverImageH,
+						name: item?.name,
+						id: item?._id,
+						link: item?.link,
+					}
+				})}
+				name={titleLiveFilm}
+			/>
 			<SlideLiveVideo
 				dataSlide={dataLiveVideo?.map((item:any) => {
 					return {
@@ -91,16 +107,24 @@ const Home = () => {
 				})}
 				name={titleLiveVideo}
 			/>
-			<SlideShow
-				dataSlide={dataLiveFim?.map((item:any) => {
-					return {
-						image: item?.coverImageH,
-						name: item?.name,
-						id: item?._id,
-					}
-				})}
-				name={titleLiveFilm}
-			/>
+			{dataListFilm?.map((item:any) => {
+				return(
+					// eslint-disable-next-line react/jsx-key
+					<Box>
+						<SlideLiveFilm
+							name={item?.description}
+							dataSlide = {item?.contents.map((items:any) => {
+								return {
+									image: items?.coverImageH,
+									name: items?.name,
+									id: items?._id,
+									link: items?.link,
+								}
+							})}
+						/>
+					</Box>
+				)
+			})}
 		</Box>
 	);
 }
