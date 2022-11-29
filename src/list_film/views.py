@@ -48,3 +48,13 @@ def list_film_list(request):
     #         serializer.save()
     #         return JsonResponse(serializer.data, status=201)
     #     return JsonResponse(serializer.errors, status=400)
+
+
+def film_detail(request, slug):
+    content = ListFilm.objects.filter(slug=slug)
+    if not content.exists():
+        return HttpResponse(status=404)
+    content = content[0]
+    if request.method == 'GET':
+        serializer = ListFilmSerializers(content)
+        return JsonResponse(serializer.data)

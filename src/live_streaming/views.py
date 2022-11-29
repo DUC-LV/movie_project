@@ -17,7 +17,7 @@ def live_streaming_list(request):
         data = {
             "errorCode": 200,
             "message": "Successful.",
-            "name": "Trực tiếp",
+            "name": "Đồng hành cùng Quatar 2022",
             "data": list(
                 content.values('created', '_id', 'title', 'message', 'itemId', 'itemType', 'urlImage'))
         }

@@ -82,6 +82,7 @@ const Home = () => {
 						image: item?.urlImage,
 						name: item?.name,
 						id: item?._id,
+						slug: item?.slug,
 					}
 				})}
 				name={titleLiveStream}
@@ -93,6 +94,7 @@ const Home = () => {
 						name: item?.name,
 						id: item?._id,
 						link: item?.link,
+						slug: item?.slug,
 					}
 				})}
 				name={titleLiveFilm}
@@ -112,7 +114,7 @@ const Home = () => {
 					// eslint-disable-next-line react/jsx-key
 					<Box>
 						<SlideLiveFilm
-							name={item?.description}
+							name={item?.name}
 							dataSlide = {item?.contents.map((items:any) => {
 								return {
 									image: items?.coverImageH,

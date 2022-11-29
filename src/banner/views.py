@@ -36,14 +36,8 @@ def banner_detail(request, pk):
         return HttpResponse(status=404)
 
     if request.method == 'GET':
-        content = Banner.objects.all()
-        data = {
-            "errorCode": 200,
-            "message": "Successful.",
-            "data": list(
-                content.values('created', '_id', 'title', 'message', 'itemId', 'itemType', 'urlImage'))
-        }
-        return JsonResponse(data)
+        serializer = BannerSerializer(content)
+        return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)

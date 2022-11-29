@@ -19,19 +19,19 @@ const Header = () => {
 		{
 			id: 2,
 			name: "Truyền hình",
-			routLink: "/phim-chieu-rap",
+			routLink: "/tv",
 			color: "white",
 		},
 		{
 			id: 3,
 			name: "Phim",
-			routLink: "/phim-thinh-hanh",
+			routLink: "/movie",
 			color: "white",
 		},
 		{
 			id: 4,
 			name: "Video",
-			routLink: "/bang-xep-hang",
+			routLink: "/video",
 			color: "white",
 		}
 	]

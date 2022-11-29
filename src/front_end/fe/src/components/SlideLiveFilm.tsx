@@ -17,6 +17,7 @@ export interface DataSlider {
 	name: string | undefined;
 	id: number | undefined;
 	link: string | undefined;
+	slug: string | undefined;
 }
 export interface DataSlide {
 	dataSlide: DataSlider[];
@@ -88,9 +89,15 @@ const SlideShow = ({ dataSlide, name }: DataSlide) => {
 							}}
 						>
 							<Image
-								// onClick={() => {
-								// 	router.push(item?.link)
-								// }}
+								onClick={() => {
+									router.push({
+										pathname: '/movie/[movieSlug]',
+										query: {
+											moiveSlug: item?.slug,
+											id: item?.id,
+										}
+									})
+								}}
 								sx={{
 									borderRadius: "10px",
 									width: '95%',

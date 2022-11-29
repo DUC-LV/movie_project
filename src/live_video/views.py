@@ -17,7 +17,7 @@ def live_video_list(request):
         data = {
             "errorCode": 200,
             "message": "Successful.",
-            "name": "Video của bạn",
+            "name": "Mới ra mắt",
             "data": list(
                 content.values('created', '_id', 'name', 'description', 'slug', 'durationStr', 'coverImage', 'link'))
         }

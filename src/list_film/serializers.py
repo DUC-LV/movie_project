@@ -11,4 +11,4 @@ class TopicFilmSerializers(serializers.ModelSerializer):
 class ListFilmSerializers(serializers.ModelSerializer):
     class Meta:
         model = TopicFilm
-        fields = ['created', '_id', 'name', 'coverImage', 'coverImageH', 'type', 'description', 'slug', 'link', 'model_chaID']
+        fields = ['created', '_id', 'name', 'type', 'description', 'slug']

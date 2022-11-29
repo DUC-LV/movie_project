@@ -17,7 +17,7 @@ def live_film_list(request):
         data = {
             "errorCode": 200,
             "message": "Successful.",
-            "name": "Phim thịnh hành",
+            "name": "HBO GO",
             "data": list(
                 content.values('created', '_id', 'coverImage', 'coverImageH', 'description', 'slug', 'type', 'link'))
         }
@@ -32,21 +32,14 @@ def live_film_list(request):
 
 
 @csrf_exempt
-def live_film_detail(request, pk):
-    try:
-        content = LiveFilm.objects.get(pk=pk)
-    except LiveFilm.DoesNotExist:
+def live_film_detail(request, slug):
+    content = LiveFilm.objects.filter(slug=slug)
+    if not content.exist():
         return HttpResponse(status=404)
-
+    content = content[0]
     if request.method == 'GET':
-        content = LiveFilm.objects.all()
-        data = {
-            "errorCode": 200,
-            "message": "Successful.",
-            "data": list(
-                content.values('created', '_id', 'coverImage', 'coverImageH', 'description', 'slug', 'type', 'link'))
-        }
-        return JsonResponse(data)
+        serializer = LiveFilmSerializer(content)
+        return JsonResponse(serializer.data)
 
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
@@ -59,3 +52,8 @@ def live_film_detail(request, pk):
     elif request.method == 'DELETE':
         content.delete()
         return HttpResponse(status=204)
+
+
+def test_search(request):
+    print(request.GET.get("search_text"))
+    return HttpResponse(200)
