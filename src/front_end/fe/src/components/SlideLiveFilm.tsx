@@ -91,10 +91,10 @@ const SlideShow = ({ dataSlide, name }: DataSlide) => {
 							<Image
 								onClick={() => {
 									router.push({
-										pathname: '/movie/[movieSlug]',
-										query: {
-											moiveSlug: item?.slug,
-											id: item?.id,
+										pathname: "/movie/[slugMovie]",
+										query: { 
+											slugMovie: item?.slug,
+											id: item?.id
 										}
 									})
 								}}
